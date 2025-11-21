@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    margin: 0;
+    font-family: 'Inter', 'Poppins', 'Segoe UI', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #f6f8fa;
+    color: #223052;
+    transition: background 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+  }
+
+  .dark body {
+    background: #101319;
+    color: #fff;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+  input,
+  textarea,
+  select {
+    color: #223052;
+    background: #fff;
+    border-color: #bfc5d2;
+  }
+  .dark input,
+  .dark textarea,
+  .dark select {
+    color: #fff;
+    background: #232323;
+    border-color: #353942;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(120deg, #0f172a 0%, #475569 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-primary {
+    background: linear-gradient(120deg, #2563eb 0%, #9333ea 100%);
+  }
+
+  .bg-gradient-secondary {
+    background: linear-gradient(120deg, #10b981 0%, #0ea5e9 100%);
+  }
+
+  .bg-gradient-success {
+    background: linear-gradient(120deg, #0ea5e9 0%, #06b6d4 100%);
+  }
+
+  .bg-gradient-danger {
+    background: linear-gradient(120deg, #f43f5e 0%, #f97316 100%);
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid #bfc5d2;
+    box-shadow: 0 8px 32px rgba(34,48,82,0.14);
+  }
+  .dark .glass-effect {
+    background: rgba(22,27,36,0.92);
+    color: #fff;
+    border-color: #353942;
+    box-shadow: 0 8px 32px rgba(16,19,25,0.38);
+  }
+
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .pulse-animation {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .card, .modal, .dark .card, .dark .modal {
+    background: rgba(34,48,82,0.97) !important;
+    color: #ffe445 !important;
+    border-radius: 1.25rem;
+  }
+}
+
