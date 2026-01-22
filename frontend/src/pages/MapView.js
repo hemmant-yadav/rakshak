@@ -298,7 +298,7 @@ const MapView = () => {
                   )}
                   {incident.image && (
                     <img
-                      src={`http://localhost:3001${incident.image}`}
+                      src={`${process.env.REACT_APP_API_URL || 'http://localhost:3001'}${incident.image}`}
                       alt="Incident"
                       className="w-full h-32 object-cover rounded mt-2"
                     />

@@ -160,7 +160,7 @@ const ModeratorPanel = () => {
                 {incident.image && (
                   <div className="rounded-xl overflow-hidden border border-slate-600/50 mb-6">
                     <img
-                      src={`http://localhost:3001${incident.image}`}
+                      src={`${process.env.REACT_APP_API_URL || 'http://localhost:3001'}${incident.image}`}
                       alt="Incident"
                       className="w-full h-40 object-cover"
                     />

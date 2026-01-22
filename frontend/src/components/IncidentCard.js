@@ -92,7 +92,7 @@ const IncidentCard = ({ incident }) => {
       {incident.image && (
         <div className="mt-6 rounded-xl overflow-hidden border border-slate-600/50 group-hover:border-slate-500/50 transition-colors">
           <img
-            src={`http://localhost:3001${incident.image}`}
+            src={`${process.env.REACT_APP_API_URL || 'http://localhost:3001'}${incident.image}`}
             alt="Incident"
             className="w-full h-48 lg:h-56 object-cover group-hover:scale-105 transition-transform duration-300"
           />
