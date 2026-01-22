@@ -15,7 +15,7 @@ const User = require('./models/User');
 const Contact = require('./models/Contact');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
@@ -86,12 +86,15 @@ const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
-    
+
     // Initialize default users if they don't exist
     await initializeDefaultUsers();
   } catch (error) {
     console.error('MongoDB connection error:', error.message);
-    process.exit(1);
+    console.log('Server will continue without database connection. Retrying in 5 seconds...');
+
+    // Retry connection after 5 seconds
+    setTimeout(connectDB, 5000);
   }
 };
 
