@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Configure axios with the correct base URL
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://rakshak-back.onrender.com';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
