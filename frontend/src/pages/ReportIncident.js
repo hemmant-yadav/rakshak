@@ -101,17 +101,23 @@ const ReportIncident = () => {
         formDataToSend.append('image', formData.image);
       }
 
-      await api.post('/api/incidents', formDataToSend, {
+      console.log('Sending incident data:', Object.fromEntries(formDataToSend));
+      console.log('API Base URL:', api.defaults.baseURL);
+
+      const response = await api.post('/api/incidents', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
 
+      console.log('Incident reported successfully:', response.data);
       alert('Incident reported successfully!');
       navigate('/');
     } catch (error) {
       console.error('Error reporting incident:', error);
-      alert('Failed to report incident. Please try again.');
+      console.error('Error response:', error.response);
+      console.error('Error message:', error.message);
+      alert(`Failed to report incident: ${error.response?.data?.error || error.message || 'Unknown error'}`);
     } finally {
       setLoading(false);
     }
