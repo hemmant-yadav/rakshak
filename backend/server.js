@@ -125,6 +125,11 @@ const initializeDefaultUsers = async () => {
   }
 };
 
+// Helper function to check database connection
+const isDBConnected = () => {
+  return mongoose.connection.readyState === 1;
+};
+
 // Connect to MongoDB
 connectDB();
 
@@ -195,6 +200,9 @@ app.get('/api/incidents/:id', async (req, res) => {
 // Create new incident
 app.post('/api/incidents', upload.single('image'), async (req, res) => {
   try {
+    if (!isDBConnected()) {
+      return res.status(503).json({ error: 'Database not available. Please try again later.' });
+    }
     const {
       title,
       description,
@@ -237,6 +245,9 @@ app.post('/api/incidents', upload.single('image'), async (req, res) => {
 // SOS Alert (High Priority)
 app.post('/api/incidents/sos', upload.single('image'), async (req, res) => {
   try {
+    if (!isDBConnected()) {
+      return res.status(503).json({ error: 'Database not available. Please try again later.' });
+    }
     const {
       description,
       latitude,
@@ -373,6 +384,16 @@ app.post('/api/auth/login', async (req, res) => {
 // Get stats for admin dashboard
 app.get('/api/stats', async (req, res) => {
   try {
+    if (!isDBConnected()) {
+      return res.status(503).json({
+        total: 0,
+        pending: 0,
+        active: 0,
+        resolved: 0,
+        critical: 0,
+        categoryBreakdown: []
+      });
+    }
     const total = await Incident.countDocuments();
     const pending = await Incident.countDocuments({ status: 'pending' });
     const active = await Incident.countDocuments({ status: 'active' });
