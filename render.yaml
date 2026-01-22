@@ -1,0 +1,25 @@
+services:
+  # Frontend React App
+  - type: web
+    name: rakshak-frontend
+    runtime: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        fromService:
+          type: web
+          name: rakshak-backend
+          property: hostport
+
+  # Backend Express API
+  - type: web
+    name: rakshak-backend
+    runtime: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false # Set this manually in Render dashboard
+      - key: PORT
+        value: 10000 # Render assigns ports dynamically, but this is a fallback

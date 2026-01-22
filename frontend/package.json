@@ -1,5 +1,4 @@
 {
-  "homepage":"https://hemmant-yadav.github.io/rakshak",
   "name": "neighborhood-safety-frontend",
   "version": "0.1.0",
   "private": true,
@@ -10,9 +9,7 @@
     "react-scripts": "5.0.1",
     "leaflet": "^1.9.4",
     "react-leaflet": "^4.2.1",
-    "axios": "^1.5.0",
-    "predeploy":"npm run build",
-    "deploy": "gh-pages -d build"
+    "axios": "^1.5.0"
   },
   "devDependencies": {
     "tailwindcss": "^3.3.5",
