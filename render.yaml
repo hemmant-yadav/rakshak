@@ -7,10 +7,7 @@ services:
     staticPublishPath: ./frontend/build
     envVars:
       - key: REACT_APP_API_URL
-        fromService:
-          type: web
-          name: rakshak-backend
-          property: hostport
+        value: https://rakshak-back.onrender.com
 
   # Backend Express API
   - type: web
