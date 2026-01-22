@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 
 const ModeratorPanel = () => {
   const [incidents, setIncidents] = useState([]);
@@ -13,7 +13,7 @@ const ModeratorPanel = () => {
 
   const fetchIncidents = async () => {
     try {
-      const response = await axios.get('/api/incidents');
+      const response = await api.get('/api/incidents');
       setIncidents(response.data);
     } catch (error) {
       console.error('Error fetching incidents:', error);
@@ -24,7 +24,7 @@ const ModeratorPanel = () => {
 
   const handleStatusChange = async (incidentId, newStatus) => {
     try {
-      await axios.patch(`/api/incidents/${incidentId}`, {
+      await api.patch(`/api/incidents/${incidentId}`, {
         status: newStatus
       });
       fetchIncidents();
@@ -39,7 +39,7 @@ const ModeratorPanel = () => {
     if (!editingIncident) return;
 
     try {
-      await axios.patch(`/api/incidents/${editingIncident.id}`, {
+      await api.patch(`/api/incidents/${editingIncident.id}`, {
         status: editingIncident.status,
         notes: notes
       });

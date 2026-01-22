@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/api';
 import IncidentCard from '../components/IncidentCard';
 import SOSButton from '../components/SOSButton';
 
@@ -18,8 +18,8 @@ const Dashboard = () => {
   const fetchData = async () => {
     try {
       const [incidentsResponse, statsResponse] = await Promise.all([
-        axios.get('/api/incidents'),
-        axios.get('/api/stats')
+        api.get('/api/incidents'),
+        api.get('/api/stats')
       ]);
       
       const allIncidents = incidentsResponse.data;

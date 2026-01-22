@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { openWhatsAppChat, openWhatsAppChatWithContacts, createSOSMessage, isMobileDevice } from '../utils/whatsappUtils';
 
 const SOSButton = () => {
@@ -24,7 +24,7 @@ const SOSButton = () => {
 
   const fetchContacts = async () => {
     try {
-      const response = await axios.get('/api/contacts');
+      const response = await api.get('/api/contacts');
       setContacts(response.data);
     } catch (error) {
       console.error('Error fetching contacts:', error);
@@ -138,7 +138,7 @@ const SOSButton = () => {
       formDataToSend.append('latitude', data.latitude);
       formDataToSend.append('longitude', data.longitude);
 
-      const response = await axios.post('/api/incidents/sos', formDataToSend, {
+      const response = await api.post('/api/incidents/sos', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

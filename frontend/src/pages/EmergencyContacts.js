@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { openWhatsAppChat } from '../utils/whatsappUtils';
 import { formatIndianPhoneNumber, formatIndianPhoneForDisplay } from '../utils/phoneUtils';
 
@@ -20,7 +20,7 @@ const EmergencyContacts = () => {
 
   const fetchContacts = async () => {
     try {
-      const response = await axios.get('/api/contacts');
+      const response = await api.get('/api/contacts');
       setContacts(response.data);
     } catch (error) {
       console.error('Error fetching contacts:', error);
@@ -42,7 +42,7 @@ const EmergencyContacts = () => {
         return;
       }
 
-      await axios.post('/api/contacts', {
+      await api.post('/api/contacts', {
         ...formData,
         phone: formattedPhone
       });
@@ -61,7 +61,7 @@ const EmergencyContacts = () => {
     }
 
     try {
-      await axios.delete(`/api/contacts/${id}`);
+      await api.delete(`/api/contacts/${id}`);
       setSuccess('Contact deleted successfully!');
       fetchContacts();
     } catch (error) {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap, Circle } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import axios from 'axios';
+import api from '../services/api';
 import { useLocation } from 'react-router-dom';
 import { getCurrentLocation, filterIncidentsByRadius, calculateDistance } from '../utils/locationUtils';
 
@@ -126,7 +126,7 @@ const MapView = () => {
         params.append('radius', '5'); // 5km radius
       }
 
-      const response = await axios.get(`/api/incidents?${params.toString()}`);
+      const response = await api.get(`/api/incidents?${params.toString()}`);
       setIncidents(response.data);
     } catch (error) {
       console.error('Error fetching incidents:', error);

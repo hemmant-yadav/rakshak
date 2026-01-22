@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import IncidentCard from '../components/IncidentCard';
 import { Link } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ const AllIncidents = () => {
       if (filter.status) params.append('status', filter.status);
       if (filter.priority) params.append('priority', filter.priority);
 
-      const response = await axios.get(`/api/incidents?${params.toString()}`);
+      const response = await api.get(`/api/incidents?${params.toString()}`);
       setIncidents(response.data);
     } catch (error) {
       console.error('Error fetching incidents:', error);

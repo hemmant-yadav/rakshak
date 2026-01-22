@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { getLocationWithAddress, getCurrentLocation, reverseGeocode } from '../services/locationService';
 
@@ -101,7 +101,7 @@ const ReportIncident = () => {
         formDataToSend.append('image', formData.image);
       }
 
-      await axios.post('/api/incidents', formDataToSend, {
+      await api.post('/api/incidents', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

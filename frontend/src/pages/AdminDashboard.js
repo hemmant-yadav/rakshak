@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({});
@@ -13,8 +13,8 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     try {
       const [statsResponse, incidentsResponse] = await Promise.all([
-        axios.get('/api/stats'),
-        axios.get('/api/incidents')
+        api.get('/api/stats'),
+        api.get('/api/incidents')
       ]);
       setStats(statsResponse.data);
       setIncidents(incidentsResponse.data);
@@ -28,7 +28,7 @@ const AdminDashboard = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this incident?')) {
       try {
-        await axios.delete(`/api/incidents/${id}`);
+        await api.delete(`/api/incidents/${id}`);
         fetchData();
         alert('Incident deleted successfully');
       } catch (error) {
