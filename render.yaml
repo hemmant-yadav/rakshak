@@ -20,6 +20,6 @@ services:
     startCommand: cd backend && npm start
     envVars:
       - key: MONGODB_URI
-        sync: false # Set this manually in Render dashboard
+        value: mongodb+srv://yadavhemanth28_db_user:9880167678@cluster0.bvvxobb.mongodb.net/rakshak?retryWrites=true&w=majority
       - key: PORT
         value: 10000 # Render assigns ports dynamically, but this is a fallback
